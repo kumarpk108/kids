@@ -37,14 +37,18 @@ body{font-family:'Georgia','Times New Roman',serif;background:linear-gradient(13
 #header img{width:100%;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.2);display:block;}
 #header .logo-fallback{background:linear-gradient(135deg,#2C2416,#5A4A2A);border-radius:8px;padding:20px;text-align:center;color:var(--gold-light);font-size:1.4em;font-weight:bold;}
 
-/* NAV — scores embedded in buttons, no separate score bar */
-#nav{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;background:linear-gradient(135deg,#2C2416,#5A4A2A);padding:10px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.3);align-items:center;}
+/* NAV ROW 1 — section navigation */
+#nav{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0;background:linear-gradient(135deg,#2C2416,#5A4A2A);padding:10px;border-radius:8px 8px 0 0;box-shadow:0 2px 6px rgba(0,0,0,.3);align-items:center;}
+/* NAV ROW 2 — action buttons */
+#nav-actions{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px;background:linear-gradient(135deg,#3A2E1A,#6B5428);padding:8px 10px;border-radius:0 0 8px 8px;box-shadow:0 4px 10px rgba(0,0,0,.2);align-items:center;}
 .nav-btn{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.8em;font-family:Georgia,serif;font-weight:bold;cursor:pointer;transition:all .2s;box-shadow:0 2px 6px rgba(0,0,0,.3);}
 .nav-btn:hover{transform:translateY(-1px);}
 .nav-btn.active{background:linear-gradient(135deg,var(--accent-red),#C62828);}
 .regen-btn{background:linear-gradient(135deg,#1A3A6B,#2E5FB3);margin-left:auto;}
 .pdf-btn{background:linear-gradient(135deg,#2E7D32,#43A047);}
 .ans-btn{background:linear-gradient(135deg,#6A1B9A,#8E24AA);}
+.color-btn{background:linear-gradient(135deg,#B71C1C,#E53935);}
+.jigsaw-btn{background:linear-gradient(135deg,#0277BD,#039BE5);}
 .nav-total{background:rgba(255,255,255,.25);color:#fff;border-radius:20px;padding:6px 14px;font-size:.85em;font-weight:bold;white-space:nowrap;}
 
 /* SECTION */
@@ -208,6 +212,7 @@ body{font-family:'Georgia','Times New Roman',serif;background:linear-gradient(13
 <div id="app" style="display:none;">
   <div id="header"></div>
 
+  <!-- Row 1: Section navigation + Regenerate -->
   <div id="nav">
     <button class="nav-btn active" id="nb-crossword"  onclick="showSection('crossword',this)">📖 Crossword (0)</button>
     <button class="nav-btn" id="nb-wordsearch" onclick="showSection('wordsearch',this)">🔍 Word Search (0)</button>
@@ -219,9 +224,14 @@ body{font-family:'Georgia','Times New Roman',serif;background:linear-gradient(13
     <button class="nav-btn" id="nb-coding"     onclick="showSection('coding',this)">🔒 Letter Coding (0)</button>
     <button class="nav-btn" id="nb-choose"     onclick="showSection('choose',this)">⭐ Choose Best (0)</button>
     <button class="nav-btn regen-btn" onclick="confirmRegenerate()">🔄 Regenerate</button>
-    <button class="nav-btn pdf-btn" onclick="generatePDF(false)" title="Download puzzles as PDF">🖨️ Print Puzzles</button>
-    <button class="nav-btn pdf-btn ans-btn" onclick="generatePDF(true)" title="Download answer key as PDF">🗝️ Answer Key</button>
     <span class="nav-total" id="sc-total">🏆 0</span>
+  </div>
+  <!-- Row 2: Action buttons -->
+  <div id="nav-actions">
+    <button class="nav-btn pdf-btn"        onclick="generatePDF(false)" title="Download activity sheets as PDF">🖨️ Print Puzzles</button>
+    <button class="nav-btn pdf-btn ans-btn" onclick="generatePDF(true)"  title="Download answer key as PDF">🗝️ Answer Key</button>
+    <button class="nav-btn color-btn"      onclick="openTool('Coloring')"  title="Open Coloring activity in new tab">🎨 Coloring</button>
+    <button class="nav-btn jigsaw-btn"     onclick="openTool('Jigsaw')"    title="Open Jigsaw activity in new tab">🧩 Jigsaw</button>
   </div>
   <div id="crossword"  class="section active"><div class="section-title">📖 Crossword Puzzle</div>
   <div class="section-instructions"><strong>How to play:</strong> Click any white cell to highlight a word. The selected word is shown in yellow.<br>Then click a word from the Word Bank above to fill it in automatically.</div><div id="cw-inner"></div></div>
@@ -245,32 +255,37 @@ body{font-family:'Georgia','Times New Roman',serif;background:linear-gradient(13
 
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   ▶  FOUR GLOBAL CONFIG VARIABLES
-      Change these to switch festivals — everything else is automatic.
+   ▶  GLOBAL CONFIG — only these two lines need editing for deployment
 ════════════════════════════════════════════════════════════════ */
-const params = new URLSearchParams(window.location.search);
-const q = params.get("q");
-let FESTIVAL_NAME = "";
-FF = ["Festivals",
-"Cricket",
-"Gaurapoornima",
-"GitaJayanthi",
-"Hindu",
-"Janmashtami",
-"JhulanYatra",
-"Mahabharat",
-"Movies",
-"NarasimhaChaturtasi",
-"Politics",
-"Radhastami",
-"Ramanavami",
-"Ramayan"]
-FESTIVAL_NAME = ((q > "") ? FF[q] : FF[12]);
+const REPOSITORY_OWNER = "sankalmuk"; // ← change when mirroring to another GitHub account
 
-const LOGOC = Math.floor(Math.random() * 4) + 1;
-let CONFIG_LOGO_URL="https://raw.githubusercontent.com/sankalmuk/kids/main/" + FESTIVAL_NAME + "/Logo" + LOGOC + ".jpg";
-let CONFIG_WORDS_URL = "https://raw.githubusercontent.com/sankalmuk/kids/main/" + FESTIVAL_NAME + "/Words.txt";
-let CONFIG_STORIES_URL = "https://raw.githubusercontent.com/sankalmuk/kids/main/" + FESTIVAL_NAME + "/Stories.txt";
+// Festival list — index matches ?q= URL parameter (e.g. Festivals.html?q=5)
+const FF = [
+  "Ramanavami",          // 0  ← default
+  "Cricket",             // 1
+  "Gaurapoornima",       // 2
+  "GitaJayanthi",        // 3
+  "Hindu",               // 4
+  "Janmashtami",         // 5
+  "JhulanYatra",         // 6
+  "Mahabharat",          // 7
+  "Movies",              // 8
+  "NarasimhaChaturtasi", // 9
+  "Politics",            // 10
+  "Radhastami",          // 11
+  "Ramanavami",          // 12
+];
+
+// Read ?q= from URL; clamp to valid range; default to 0
+const _qParam = parseInt(new URLSearchParams(window.location.search).get("q") || "0", 10);
+const _qIndex = (!isNaN(_qParam) && _qParam >= 0 && _qParam < FF.length) ? _qParam : 0;
+const FESTIVAL_NAME = FF[_qIndex];
+
+// Each festival folder has Logo1.jpg … Logo4.jpg — pick one randomly each load
+const LOGOPOS = Math.floor(Math.random() * 4) + 1;
+let CONFIG_LOGO_URL    = "https://raw.githubusercontent.com/" + REPOSITORY_OWNER + "/kids/main/" + FESTIVAL_NAME + "/Logo" + LOGOPOS + ".jpg";
+let CONFIG_WORDS_URL   = "https://raw.githubusercontent.com/" + REPOSITORY_OWNER + "/kids/main/" + FESTIVAL_NAME + "/Words.txt";
+let CONFIG_STORIES_URL = "https://raw.githubusercontent.com/" + REPOSITORY_OWNER + "/kids/main/" + FESTIVAL_NAME + "/Stories.txt";
 /* ═══════════════════════════════════════════════════════════════ */
 
 // Runtime data (filled after fetch)
@@ -318,7 +333,7 @@ async function boot() {
       // Set header immediately — browser streams the image
       document.getElementById('header').innerHTML =
         `<img src="${CONFIG_LOGO_URL}" alt="Sri Ramanavami"
-              onerror="this.parentElement.innerHTML='<div class=\\'logo-fallback\\'>🕉 Sri Ramanavami — Activities for Young Learners</div>'">`;
+              onerror="this.parentElement.innerHTML='<div class=\\'logo-fallback\\'>🕉 Sri Ramanavami — Activities for Young Learners</div>'">`; 
     } catch(e) {
       document.getElementById('header').innerHTML =
         '<div class="logo-fallback">🕉 Sri Ramanavami — Activities for Young Learners</div>';
@@ -398,6 +413,11 @@ function showSection(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if(btn)btn.classList.add('active');
+}
+// Open Coloring or Jigsaw tools in a new tab for the current festival
+function openTool(toolName){
+  const url = 'https://' + REPOSITORY_OWNER + '.github.io/kids/Bookmarks/' + toolName + '.html?q=' + encodeURIComponent(FESTIVAL_NAME);
+  window.open(url, '_blank');
 }
 function confirmRegenerate(){
   if(confirm('Regenerate all puzzles with new random data? This will reset all answers.')){
@@ -1577,7 +1597,7 @@ function generatePDF(isKey){
   sections.forEach((s,i)=>doc.text(s, PDF.W/2, 135+i*9, {align:'center'}));
   // Footer
   doc.setFontSize(8); PDF.setTxt(doc, PDF.GOLD_LITE);
-  doc.text('Generated by Sri '+FESTIVAL_NAME+' Activity Program', PDF.W/2, PDF.H-20, {align:'center'});
+  doc.text('Sri '+FESTIVAL_NAME+' — Activity Program  •  '+REPOSITORY_OWNER+'.github.io/kids', PDF.W/2, PDF.H-20, {align:'center'});
 
   // Section pages
   const drawSec = (fn) => { doc.addPage(); pc.n++; fn(); };
