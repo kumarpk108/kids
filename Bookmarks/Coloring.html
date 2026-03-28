@@ -346,18 +346,62 @@
 
 /* ══ URL PARAMS ══════════════════════════════════════════ */
 const params   = new URLSearchParams(location.search);
-const folder   = params.get('q') || 'Ramanavami';
-const imgCount = Math.max(1, parseInt(params.get('c')) || 20);
+const folder   = params.get('q') || 'Krishna';       // festival / folder name
+const repoOwner= params.get('o') || 'sankalmuk';     // GitHub repository owner
 document.title = folder + ' Coloring';
 
-/* ══ DROPDOWN ════════════════════════════════════════════ */
+/* ══ DROPDOWN — populated via GitHub Contents API ════════ */
 const imgSelect = document.getElementById('imgSelect');
-for(let i=1;i<=imgCount;i++){
-  const n=String(i).padStart(2,'0');
-  const o=document.createElement('option');
-  o.value=n; o.textContent=folder+' '+n;
-  imgSelect.appendChild(o);
+
+// Image base URL for raw content
+const RAW_BASE = 'https://raw.githubusercontent.com/' + repoOwner
+               + '/kids/main/' + encodeURIComponent(folder) + '/Coloring/';
+
+// GitHub API URL to list files in the folder
+const API_URL  = 'https://api.github.com/repos/' + repoOwner
+               + '/kids/contents/' + encodeURIComponent(folder)
+               + '/Coloring';
+
+function populateDropdown(files) {
+  // filter to image files only (jpg, jpeg, png, gif, webp)
+  const imgs = files
+    .filter(f => f.type === 'file' && /\.(jpe?g|png|gif|webp)$/i.test(f.name))
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+
+  if (imgs.length === 0) {
+    const o = document.createElement('option');
+    o.value = ''; o.textContent = '⚠ No images found in folder';
+    imgSelect.appendChild(o);
+    return;
+  }
+
+  imgs.forEach(f => {
+    const o = document.createElement('option');
+    o.value       = f.name;          // just the filename, e.g. "KrishnaLeela.jpg"
+    o.textContent = f.name.replace(/\.[^.]+$/, ''); // label without extension
+    imgSelect.appendChild(o);
+  });
 }
+
+// Fetch file list from GitHub API on startup
+(function fetchFileList() {
+  const firstOpt = imgSelect.options[0];
+  firstOpt.textContent = '⏳ Loading images…';
+
+  fetch(API_URL, { headers: { 'Accept': 'application/vnd.github.v3+json' } })
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' — ' + API_URL);
+      return r.json();
+    })
+    .then(data => {
+      firstOpt.textContent = '— Pick image —';
+      populateDropdown(Array.isArray(data) ? data : []);
+    })
+    .catch(err => {
+      firstOpt.textContent = '⚠ Could not load list';
+      console.error('GitHub API error:', err);
+    });
+})();
 
 /* ══ CANVAS / CTX ════════════════════════════════════════ */
 const canvas = document.getElementById('mainCanvas');
@@ -537,11 +581,11 @@ document.getElementById('contrastSlider').addEventListener('change',function(){
 
 /* ══ LOAD IMAGE ══════════════════════════════════════════ */
 const loadMsg = document.getElementById('loadMsg');
-function loadColoring(num){
-  if(!num) return;
+function loadColoring(filename){
+  if(!filename) return;
   loadMsg.innerHTML='<div class="spinner"></div>Loading…';
   loadMsg.classList.remove('hidden');
-  const url='https://sankalmuk.github.io/kids/Coloring/'+encodeURIComponent(folder)+'/'+encodeURIComponent(folder+num)+'.jpg';
+  const url = RAW_BASE + encodeURIComponent(filename);
   const img=new Image();
   img.crossOrigin='anonymous';
   img.src=url;
@@ -648,8 +692,9 @@ document.getElementById('clearBtn').addEventListener('click',()=>{
   pushUndo(); ctx.putImageData(baseImage,0,0);
 });
 document.getElementById('saveBtn').addEventListener('click',()=>{
+  const selName = imgSelect.value ? imgSelect.value.replace(/\.[^.]+$/,'') : folder;
   const a=document.createElement('a');
-  a.download=folder+'_MyColoring.png';
+  a.download= selName + '_MyColoring.png';
   a.href=canvas.toDataURL('image/png');
   a.click();
 });
