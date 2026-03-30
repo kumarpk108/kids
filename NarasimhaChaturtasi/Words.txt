@@ -1,32 +1,60 @@
-Word	Hints
+Word	Hint
 Aditi	Mother of demigods
-Anuhlada	Prahlada’s brother
+Agastya	The great sage who is said to have installed the Narasimha Deity at Simhachalam after receiving instructions
+Ahobilam	The sacred hill complex in present-day Andhra Pradesh where Lord Narasimha appeared and where nine forms of Narasimha are worshipped
+Amarka	One of the two sons of Shukracharya appointed as a teacher to educate Prahlada alongside his brother Chanda
+Anuhlada	Prahlada's brother
 Bali	Grandson of prahalad maharaj
+Bhishmadeva	The grandsire of the Kurus who narrated the glories of Narasimha to Yudhishthira on his deathbed
 Brahaspati	Priest for demigods
-Brahma	Gave benedictions to hiranyakasipu
-Diti	Mother of hiranyakasipu (demons)
+Brahma	The creator god who granted Hiranyakashipu his famous boon of conditional immortality
+Chanda	One of the two sons of Shukracharya appointed as a teacher to educate Prahlada in the ways of the demons
+Chandragiri	The historic fort and region where the Narasimha temple at Simhachalam received patronage from Vijayanagara kings
+Diti	The mother of Hiranyaksha and Hiranyakashipu and daughter of Daksha who desired powerful sons
 Doorway	The demon hiranyakasipu was killed here on the lap of lord
-Hiranya	Gold
-Hiranyakasipu	Father of prahalada
-Hiranyaksha	Asura killed by Varaha Dev, Brother of hiranyakasipu
-Hlada	Prahlada’s brother
+Garudachalam	One of the three hillocks in Upper Ahobilam where Narasimha temples are located associated with Garuda
+Hiranyakashipu	The powerful demon king and father of Prahlada who received a boon making him nearly invincible; he was killed by Lord Narasimha
+Hiranyaksha	The twin brother of Hiranyakashipu who was killed by Lord Varaha the boar incarnation
+Hlada	Prahlada's brother
 Holika	A demoness who was killed on the day of Holi. She was the sister of King Hiranyakashipu
-Kashyapa	Father of hiranyakasipu 
-Kayadhu	Prahlada’s mother
+Indra	The king of the demigods who initially captured Kayadhu wanting to kill the unborn child of Hiranyakashipu
+Jaya	One of the two gatekeepers of Vaikuntha who was cursed by the four Kumaras to take birth as Hiranyakashipu
+Kashyapa	The father of Hiranyaksha and Hiranyakashipu born from Diti one of the thirteen wives of Kashyapa
+Kaumodaki	The divine mace weapon of Lord Vishnu sometimes depicted alongside Narasimha's fierce form
+Kayadhu	The wife of Hiranyakashipu and mother of Prahlada who was protected by Narada Muni while pregnant with Prahlada
 Kirtanam	One of the nine methods of bhakti
+Lakshmi	The eternal consort of Lord Narasimha who sits on His lap in the peaceful Malola form after the destruction of Hiranyakashipu
+Mandarachala (Mandara Mountain)	The mountain where Hiranyakashipu performed severe penances for eleven thousand years to please Lord Brahma
 Mandarahill	Place where hiranyaksa performed austerities
 Nail	Lord narasimha dev used this to kill the demon
 Narada	Saved the mother of prahlada from indra
 Narasimha	Incarnation of lord who killed hiranyakasipu
-Prahlada	Described the nine methods of devotional service
+Panchajanya	The divine conchshell of Lord Vishnu blown by Narasimha after His victory over Hiranyakashipu
+Parikshit	The hearer of the Srimad Bhagavatam who listened to the Narasimha pastime and attained liberation
+Prahlada	The pure devotee and son of Hiranyakashipu who was protected by Lord Narasimha due to his unshakable faith in Lord Vishnu
 Rusabhanu	Queen of hiranyaksa
-Samhlada	Prahlada’s brother
+Samhlada	Prahlada's brother
 Sanda	Teacher of prahalada
-Simhika	Prahlada’s sister
+Sharabha	The fierce avatar of Lord Shiva who according to some Puranas appeared to calm Narasimha's ferocity
+Shukadeva	The primary narrator of the Srimad Bhagavatam who spoke the Narasimha pastime to King Parikshit
+Shukracharya	The great spiritual master of the demons and father of Chanda and Amarka who served as the royal priest of Hiranyakashipu
+Simhachalam	The famous hill temple in Andhra Pradesh where Lord Narasimha is worshipped as Varaha Narasimha combining two avatars
+Simhika	Prahlada's sister
 Smaranam	Prahlada set an example for this
 Sravanam	One of the nine methods of bhakti
+Srimad Bhagavatam	The primary Puranic text containing the complete detailed pastime of Narasimha and Prahlada in twelve chapters
+Sudarshana Chakra	The divine discus weapon of Lord Vishnu wielded by Narasimha to decapitate Hiranyakashipu after tearing him apart
 Sukracarya	 priest for demons
 Twilight	Hiranyakasipu was killed at this time
+Vaikuntha	The eternal spiritual abode of Lord Vishnu where Jaya and Vijaya served as gatekeepers before their curse
+Vajra	The weapon Indra used in battles against Hiranyakashipu before the demon received his boon from Brahma
 Vamana	Dwarf incarnation
 Varaha	Killed hiranyaksha
+Varaha	The boar incarnation of Lord Vishnu who killed Hiranyaksha and lifted the earth from the Garbhodaka Ocean
+Varahi	The consort of Lord Varaha sometimes worshipped alongside Varaha Narasimha in certain traditions
+Varuna	The lord of the waters who directed Hiranyaksha to confront Lord Varaha leading to the boar incarnation's pastime
+Vedachalam	One of the three hillocks in Upper Ahobilam representing the Vedas which glorify Lord Narasimha
+Vijaya	One of the two gatekeepers of Vaikuntha who was cursed by the four Kumaras to take birth as Hiranyaksha
 Virochana	An asura, son of Prahlada, and father of Bali.
+Vishnu	The Supreme Lord who incarnates as Narasimha and other avatars to protect His devotees
+Yudhishthira	The Dharmaraja who heard the Narasimha pastime from Bhishmadeva and was relieved of his distress
