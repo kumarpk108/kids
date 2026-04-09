@@ -257,7 +257,7 @@ body{font-family:'Georgia','Times New Roman',serif;background:linear-gradient(13
 /* ═══════════════════════════════════════════════════════════════
    ▶  GLOBAL CONFIG — only these two lines need editing for deployment
 ════════════════════════════════════════════════════════════════ */
-const REPOSITORY_OWNER = "sankalmuk"; // ← change when mirroring to another GitHub account
+const REPOSITORY_OWNER = "kumarpk108"; // ← change when mirroring to another GitHub account
 
 // Festival list — index matches ?q= URL parameter (e.g. Festivals.html?q=5)
 const FF = [
@@ -277,7 +277,7 @@ const FF = [
 ];
 
 // Read ?q= from URL; clamp to valid range; default to 0
-const _qParam = parseInt(new URLSearchParams(window.location.search).get("q") || "0", 10);
+const _qParam = parseInt(new URLSearchParams(window.location.search).get("q") || "9", 10);
 const _qIndex = (!isNaN(_qParam) && _qParam >= 0 && _qParam < FF.length) ? _qParam : 0;
 const FESTIVAL_NAME = FF[_qIndex];
 
