@@ -1,29 +1,160 @@
-
 <!DOCTYPE html>
 <html>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta charset='UTF-8' />
 <title>HomePage</title>
-<style>
-a,p,* {font-size:4vw;}
-:root {
---bg1:#826200; --fg1:#FFFFFF;
---bg2:#B68900; --fg2:#FFFFFF;
---bg3:#EAB000; --fg3:#000000;
---bg4:#FFDA69; --fg4:#000000;
---bg5:#FFF3CD; --fg5:#000000;
---bg6:#FFFBF0; --fg6:#000000;
+<body>
+<script>//     0                  1        2         3          4        5         6          7        8         9         10        11        12
+   var themes = [
+    ["vba"           ,"#303E45","#435761","#57707D","#9EB1BB","#DFE5E8","#F5F7F8","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["blue"          ,"#074B83","#0A69B7","#0C87EB","#79BFF8","#D2EAFD","#F2F9FE","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["kotlin"        ,"#826200","#B68900","#EAB000","#FFDA69","#FFF3CD","#FFFBF0","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000","Used in Apps"],
+    ["gen"           ,"#20295B","#2D397F","#3949A3","#8995D6","#D8DCF1","#F3F4FB","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["w3css"         ,"#005F6B","#008496","#00AAC1","#4EEAFF","#C4F8FF","#EDFDFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["python"        ,"#242833","#323848","#40485C","#8892AC","#D7DBE3","#F3F4F7","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["nodejs"        ,"#3D2B24","#553C33","#6D4D41","#B89588","#E7DCD7","#F8F4F3","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["php"           ,"#4A2321","#67312E","#853F3C","#C88885","#EDD7D6","#F9F3F3","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["perl"          ,"#4B4A55","#696776","#898696","#C2C1C9","#EBEAED","#F9F9FA","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["lua"           ,"#912200","#CB2F00","#FF4107","#FF9A7B","#FFDDD3","#FFF5F2","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["java"          ,"#6A573C","#957954","#B39A78","#D8CCBA","#F2EEE8","#FBFAF8","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["html"          ,"#918210","#CAB516","#E9D438","#F4E999","#FBF8DD","#FEFDF5","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["js"            ,"#ADADAD","#B8B8B8","#CCCCCC","#E1E1E1","#F5F5F5","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["Black"         ,"#000000","#000000","#000000","#666666","#CCCCCC","#F0F0F0","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","Black&White"],
+    ["DarkGrey"      ,"#303030","#444444","#575757","#A0A0A0","#DFDFDF","#F6F6F6","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["Grey"          ,"#4F4F4F","#6F6F6F","#8E8E8E","#C5C5C5","#ECECEC","#F9F9F9","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["SlateGray"     ,"#707C83","#7A868B","#A2AAA8","#BEC3BC","#D7DACF","#EAECE9","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["LightSlateGray","#778899","#A2ADB9","#D0D6DC","#E6E6FA","#F3F5F6","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["LightGrey"     ,"#C3C3C3","#CECECE","#D9D9D9","#EBEBEB","#F9F9F9","#FDFDFD","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["White"         ,"#ECECEC","#F0F0F0","#FDFDFD","#F9F9F9","#F3F3F3","#FEFEFE","#000000","#000000","#000000","#000000","#000000","#000000"],
+    ["White2"        ,"#7C91A2","#D5E9F6","#DBE5EB","#EAEFF2","#FAFAFA","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["Red"           ,"#8D1007","#C5170A","#F32617","#F98D85","#FDD9D6","#FEF4F3","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000","Red Family"],
+    ["Pink"          ,"#790C30","#A91143","#D91557","#F279A1","#FBD2E0","#FEF2F6","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["DeepOrange"    ,"#912200","#CB2F00","#FF4107","#FF9A7B","#FFDDD3","#FFF5F2","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Bole"          ,"#703E3B","#C84648","#CE877E","#DBB6AA","#EDD1B6","#FFF3DB","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Brown"         ,"#936B0E","#CE9613","#ECB535","#F2CD75","#F9E6BA","#FCF2DC","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Orange"        ,"#804D00","#B36B00","#E68A00","#FFC266","#FFEBCC","#FFF9F0","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Seraphic"      ,"#52423C","#AD5C70","#CD9897","#DDB6AB","#E5C5B5","#E7D9D1","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["VioletRed"     ,"#C51B7D","#DE77AE","#F1B6DA","#F8DDEE","#FDE0EF","#F7F7F7","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["LightCoffee"   ,"#CFA694","#D4BAAE","#E3CBBD","#E8D0C1","#ECD3C4","#F4DED4","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["Creamy"        ,"#847767","#B59A85","#C5B399","#D5C6B0","#EAE2D7","#F5E6CA","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Green"         ,"#265728","#357A38","#459C48","#93CF95","#DBEFDC","#F4FAF4","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000","Green Family"],
+    ["DarkGreen"     ,"#276419","#4D9221","#7FBC41","#B8E186","#D9EFBE","#E6F5D0","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["LightGreen"    ,"#466522","#628E2F","#7EB63D","#B9DB93","#E8F3DB","#F8FBF4","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["SeaGreen"      ,"#238443","#41AB5D","#78C679","#ADDD8E","#D2ECC0","#D9F0A3","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Lime"          ,"#6B7515","#96A41D","#C1D325","#E0EA87","#F5F8D7","#FCFDF3","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["Khaki"         ,"#A99B16","#E3D029","#ECDF6C","#F6F0BB","#FCFAE8","#FEFEF8","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["Yellow"        ,"#9E8E00","#DDC700","#FFE81E","#FFF38B","#FFFBD8","#FFFEF3","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["LightGreen2"   ,"#87CB8A","#96D199","#A6D8A7","#CEE9CF","#EFF8F0","#FAFDFA","#FFFFFF","#000000","#000000","#000000","#000000","#000000"],
+    ["DeepPurple"    ,"#341D5B","#482880","#5D34A4","#A384D8","#E0D6F2","#F6F3FB","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","Blue Family"],
+    ["Purple"        ,"#4E1358","#6D1B7B","#8C239E","#CE6DDF","#EFCEF4","#FAF0FC","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["DarkPurple"    ,"#2E1437","#51425F","#715C84","#948E99","#E7EED0","#CAD1C3","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000"],
+    ["Teal"          ,"#004A43","#00685D","#008578","#26FFE9","#B7FFF8","#E9FFFD","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["BlueGreen"     ,"#005445","#008F75","#ABD09A","#B7DB9E","#D0E9C1","#F1F9F3","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["DutchSeas"     ,"#1693A5","#45B5C4","#7ECECA","#A0DED6","#C7EDE8","#D2EFEB","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["SpanishBlue"   ,"#2171B5","#4292C6","#6BAED6","#9ECAE1","#D0E5F1","#C6DBEF","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["LightBlue"     ,"#1B7A9F","#2AA9DB","#69C2E6","#B8E2F3","#E7F5FB","#F8FCFE","#FFFFFF","#FFFFFF","#000000","#000000","#000000","#000000"],
+    ["Turquoise"     ,"#00CCBE","#09A6A3","#9DBFAF","#EDEBC9","#F9F3B3","#FCF9D8","#FFFFFF","#FFFFFF","#FFFFFF","#000000","#000000","#000000"],
+    ["Mint"          ,"#759F7C","#B4C5B2","#E3F1E0","#A0D4AE","#D1EAD7","#D1EAD7","#FFFFFF","#000000","#000000","#000000","#000000","#000000"]];
+// Get the current URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+
+// Step 1: Check if "theme" is passed in the URL
+let x1;
+if (urlParams.has('theme') && urlParams.get('theme') !== '') {
+    // Use the theme from URL
+    x1 = parseInt(urlParams.get('theme'), 10);
+    // Save it to localStorage for future use
+    localStorage.setItem('theme', x1);
+} else {
+    // Step 2: If not in URL, check localStorage
+    let savedTheme = localStorage.getItem('theme');
+    if (savedTheme !== null) {
+        x1 = parseInt(savedTheme, 10);
+    } else {
+        // Step 3: If neither URL nor localStorage, default to 0
+        x1 = 0;
+    }
 }
+
+function mysubmit()
+{
+	var x1 = document.getElementById("theme").value;
+	localStorage.setItem('theme', x1);
+	location.reload();
+}
+
+var theme = x1;
+var color = themes[theme];
+
+document.writeln(`
+<style>
+:root {
+--bg1:${color[1]} ; --fg1:${color[7]} ;
+--bg2:${color[2]} ; --fg2:${color[8]} ;
+--bg3:${color[3]} ; --fg3:${color[9]} ;
+--bg4:${color[4]} ; --fg4:${color[10]} ;
+--bg5:${color[5]} ; --fg5:${color[11]} ;
+--bg6:${color[6]} ; --fg6:${color[12]} ;
+}
+
+.header {
+  display: flex;              /* enables flexbox */
+  justify-content: space-between; /* pushes items to opposite ends */
+  align-items: center;        /* vertically centers them */
+  padding: 0 10px;            /* optional spacing */
+}
+
+.left { text-align: left; }
+
+.right { text-align: right; }
+
+/* Default for Laptop */
+.title {background-color:var(--bg3); color:var(--fg3); font-size:3vw; padding:3pt;}
+a, p, * { font-size: 1vw; }
+
+/* Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  a, p, * {
+    font-size: 3vw;
+  }
+  .title {background-color:var(--bg3); color:var(--fg3); font-size:4vw;}
+}
+
+/* Mobile Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  a, p, * {
+    font-size: 4vw;
+  }
+  .title {background-color:var(--bg3); color:var(--fg3); font-size:5vw;}
+}
+
 .flex1 {display:flex; flex-wrap:wrap; align-items:center flex-wrap:wrap; border-bottom:1px dotted;}
 .flex1 div { padding:2pt 4pt; border-right:1px solid var(--bg3); }
-.cat {font-weight:bold; flex-basis:10%; padding:2pt; text-align:center; background-color:var(--bg2); color:var(--fg2); border-bottom:1px solid var(--bg6);}
+.cat {font-weight:bold; flex-basis:10%; padding:2pt; text-align:center; background-color:var(--bg2); color:var(--fg2); border-bottom:1px solid var(--bg6); white-space: nowrap;}
 .head {background-color:var(--bg3); color:var(--fg3);}
 .one {xwidth:90px;}
 a {text-decoration:none; color:black; padding:2pt 4pt;display:block;}
 a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 </style>
-<body>
+`);
 
+document.writeln("<div class='header title'>"+
+"<span class='title left'>Homepage</span>"+
+"<span class='right'>"+
+"<b>Theme:</b> <select id='theme' name='theme' onchange='mysubmit()'>");
+
+for (var i = 0; i < themes.length; i++)
+	document.writeln("<option " + ((i == theme) ? " SELECTED " : "") + " value=" + i + ">" + String.fromCharCode(65 + i) + " " + themes[i][0] + "</option>");
+
+document.writeln("</select></span>" +	"</div>");
+</script>
+<div class='flex1'><div class='cat'>Quick</div>
+<div class='one'><a href='https://www.prokerala.com/astrology/tamil-panchangam/?la=ta'  title='Panchangam' >Panchangam</a></div>
+<div class='one'><a href='https://www.tamildailycalendar.com/tamil_daily_calendar.php'  title='Dailysheet calendar' >Daily</a></div>
+<div class='one'><a href='https://www.dinamalar.com/josiyam-astrology/tamil-month-calendar'  title='Monthly calendar' >Monthly</a></div>
+<div class='one'><a href='https://www.timeanddate.com/calendar/'  title='Yearly calendar' >Yearly</a></div>
+<div class='one'><a href='http://www.google.com/'  title='Google Search' >Google</a></div>
+<div class='one'><a href='https://chat.openai.com/'  title='ChatGPT AI' >ChatGPT</a></div></div>
 <div class='flex1'><div class='cat'>Tamil News</div>
 <div class='one'><a href='https://www.dinamalar.com/' >Dinamalar</a></div>
 <div class='one'><a href='http://www.maalaimalar.com/' >MalaiMalar</a></div>
@@ -78,7 +209,6 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='flex1'><div class='cat'>Sports</div>
 <div class='one'><a href='http://www.espncricinfo.com/' >CricInfo</a></div>
 <div class='one'><a href='http://stats.cricinfo.com/ci/content/records/216972.html' >Stats</a></div>
-<div class='one'><a href='http://www.sticksports.com/games/stick-cricket/' >Stick Cricket</a></div>
 <div class='one'><a href='https://www.cricbuzz.com/' >Cricbuzz</a></div>
 <div class='one'><a href='http://www.espncricinfo.com/rankings/content/current/page/211271.html' >ICC Ranking</a></div>
 <div class='one'><a href='http://www.hotstar.com/#!/featured-sports'  title='HotStar Live TV' >HotStar</a></div>
@@ -90,16 +220,13 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='https://play.google.com/store' >GooglePlay</a></div>
 <div class='one'><a href='http://www.facebook.com' >FaceBook</a></div>
 <div class='one'><a href='https://web.whatsapp.com' >WhatsAPP</a></div>
-<div class='one'><a href='https://www.moviespoilers.io/' >MovieSpoilers</a></div>
 <div class='one'><a href='https://www.instagram.com/' >InstaGram</a></div>
 <div class='head'>eMail</div>
 <div class='one'><a href='http://gmail.google.com/' >gMail</a></div>
 <div class='one'><a href='http://mail.yahoo.com/?.intl=us' >Yahoo Mail</a></div>
-<div class='one'><a href='http://www.hotmail.com/' >Hotmail</a></div>
+<div class='one'><a href='https://outlook.live.com/mail/' >Hotmail</a></div>
 <div class='one'><a href='http://www.blogger.com/start' >Blogger</a></div>
-<div class='one'><a href='http://sankalmuk.blogspot.com/' >Sankar Blog</a></div>
-<div class='one'><a href='http://spaces.msn.com/' >MSN Blog</a></div>
-<div class='one'><a href='http://spaces.msn.com/members/psankaran/' >Sankar MySpace</a></div></div>
+<div class='one'><a href='http://sankalmuk.blogspot.com/' >Sankar Blog</a></div></div>
 <div class='flex1'><div class='cat'>AI Chat</div>
 <div class='one'><a href='https://chat.openai.com/'  title='ChatGPT' >ChatGPT</a></div>
 <div class='one'><a href='https://gemini.google.com/app'  title='GeminiAI' >GeminiAI</a></div>
@@ -130,12 +257,26 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='http://www.canarabank.com/english/'  title='Canara Bank' >CB</a></div>
 <div class='one'><a href='https://www.pnbindia.in/Home.aspx'  title='Punjab National Bank' >PNB</a></div>
 <div class='one'><a href='https://www.kotak.com/en.html'  title='Kotak Bank' >Kotak Bank</a></div>
-<div class='one'><a href='https://kstrade.kotaksecurities.com/'  title='Kotak Trading Terminal' >Trading</a></div>
+<div class='one'><a href='https://neo.kotaksecurities.com/Login'  title='Kotak Trading Terminal' >Trading</a></div>
 <div class='head'>Services</div>
 <div class='one'><a href='https://ideas.ideas.nsdl.com'  title='NSDL Stock Position' >NSDL</a></div>
 <div class='one'><a href='http://www.x-rates.com/d/AUD/table.html'  title='Current and past few months exchange rates with graphs' >Forex</a></div>
 <div class='one'><a href='https://m2inet.icicibank.co.in/m2iNet/exchangeRate.misc'  title='Use this exchange rate for actual transfer via ICICI' >ICICIX</a></div>
 <div class='one'><a href='https://m2inet.icicibank.co.in/m2iNet/m2iNetLoginForm.jsp'  title='Money 2 India' >M2India</a></div></div>
+<div class='flex1'><div class='cat'>Tax</div>
+<div class='one'><a href='https://www.incometaxindiaefiling.gov.in/home'  title='Income Tax Department of India' >Income Tax</a></div>
+<div class='one'><a href='http://www.chennaicorporation.gov.in/online-civic-services/index.htm' >ChennaiPropTax</a></div>
+<div class='one'><a href='https://bnc.chennaimetrowater.in/#/public/cus-login' >ChennaiWaterTax</a></div>
+<div class='one'><a href='https://tnurbanepay.tn.gov.in/LoginPage.aspx' >TirchyWaterTax</a></div>
+<div class='one'><a href='https://myaadhaar.uidai.gov.in/' >Aadhar</a></div></div>
+<div class='flex1'><div class='cat'>Portals</div>
+<div class='one'><a href='http://www.flipkart.com/' >FlipKart</a></div>
+<div class='one'><a href='http://www.amazon.in/'  title='type message center in search to contact support' >Amazon</a></div>
+<div class='one'><a href='https://www.jiomart.com/' >JIOMart</a></div>
+<div class='one'><a href='https://www.ajio.com/' >AJIO</a></div>
+<div class='one'><a href='https://shop.bharathisystems.com/' >Refurbished</a></div>
+<div class='one'><a href='https://usedlaptopstore.in/' >Infocomm</a></div>
+<div class='one'><a href='https://reboot-it.com.au/' >RebootIT</a></div></div>
 <div class='flex1'><div class='cat'>Travel Planning</div>
 <div class='one'><a href='https://www.irctc.co.in/nget/train-search'  title='sankalmuk@gmail.com' >IRCTC</a></div>
 <div class='one'><a href='http://www.indianrail.gov.in/enquiry/PNR/PnrEnquiry.html?locale=en'  title='PNR Enquiry' >PNREnq</a></div>
@@ -143,61 +284,38 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='http://indiarailinfo.com/'  title='Find Trains Available between stations etc' >RailInfo</a></div>
 <div class='one'><a href='http://etrain.info/in?TRAIN_BETWEEN=TPJ-MS' >TPJ-MS</a></div>
 <div class='head'>Bus</div>
-<div class='one'><a href='http://www.tnstc.in/TNSTCOnline/' >TN Bus</a></div>
+<div class='one'><a href='http://www.tnstc.in/' >TN Bus</a></div>
 <div class='one'><a href='http://www.kpntravels.in/frmUserHome.aspx' >KPN Travels</a></div>
 <div class='one'><a href='https://rathimeena.co.in/rathisite/newsite/index.jsp' >RathiMeena</a></div>
-<div class='one'><a href='https://www.ticketgoose.com/' >Travel Goose</a></div>
-<div class='one'><a href='http://www.tpcindia.com/' >ProfCourier</a></div></div>
+<div class='one'><a href='http://www.tpcindia.com/' >ProfCourier</a></div>
+<div class='one'><a href='https://www.indiapost.gov.in/' >IndiaPost</a></div></div>
 <div class='flex1'><div class='cat'>Religion</div>
 <div class='one'><a href='http://www.iskcon.net.au/' >Melb.Temple</a></div>
 <div class='one'><a href='http://www.kamakoti.org/' >KanchiMat</a></div>
 <div class='one'><a href='http://www.sringeri.net/' >Sringeri</a></div>
 <div class='one'><a href='http://www.ramana-maharshi.org/' >Ramanashram</a></div>
 <div class='one'><a href='http://www.sivanandadlshq.org/home.html' >Sivananda</a></div>
-<div class='one'><a href='http://www.sangeethapriya.org/Downloads.html' >SangeethaPriya</a></div>
-<div class='one'><a href='http://www.salagram.net/' >Salagram</a></div>
 <div class='one'><a href='http://www.tamilsurangam.com/literatures/shaivam_literatures.html'  title='Good Collection of eBooks' >Tirumurai</a></div>
-<div class='one'><a href='http://78.129.159.25:8121/stream'  title='Ramanasram Radio' >RadioArunachala</a></div>
 <div class='one'><a href='http://www.thevaaram.org/index.php'  title='Thevaram With meaning' >Thevaram</a></div></div>
-<div class='flex1'><div class='cat'>Portals</div>
-<div class='one'><a href='https://www.tnebnet.org/awp/login' >TNEB</a></div>
-<div class='one'><a href='http://portal.bsnl.in/rc/aspxfiles/login.aspx' >BSNLTopUp</a></div>
-<div class='one'><a href='https://www.airtel.in/myaccount' >Airtel</a></div>
-<div class='one'><a href='https://indane.co.in/' >Indane</a></div>
-<div class='one'><a href='https://www.jio.com/Jio/portal/jioLogin' >MyJio</a></div>
-<div class='head'>Shopping</div>
-<div class='one'><a href='http://www.flipkart.com/' >FlipKart</a></div>
-<div class='one'><a href='http://www.amazon.in/'  title='type message center in search to contact support' >Amazon</a></div>
-<div class='one'><a href='https://www.jiomart.com/' >JIOMart</a></div>
-<div class='one'><a href='https://www.ajio.com/' >AJIO</a></div>
-<div class='one'><a href='https://shop.bharathisystems.com/' >Refurbished</a></div>
-<div class='one'><a href='https://usedlaptopstore.in/' >Infocomm</a></div></div>
-<div class='flex1'><div class='cat'>Tax</div>
-<div class='one'><a href='https://www.incometaxindiaefiling.gov.in/home'  title='Income Tax Department of India' >Income Tax</a></div>
-<div class='one'><a href='http://www.chennaicorporation.gov.in/online-civic-services/index.htm' >ChennaiPropTax</a></div>
-<div class='one'><a href='https://bnc.chennaimetrowater.in/#/public/cus-login' >ChennaiWaterTax</a></div>
-<div class='one'><a href='https://tnurbanepay.tn.gov.in/LoginPage.aspx' >TirchyWaterTax</a></div>
-<div class='one'><a href='https://myaadhaar.uidai.gov.in/' >Aadhar</a></div></div>
 <div class='flex1'><div class='cat'>Forums</div>
 <div class='one'><a href='http://libgen.li/index.php?columns[]=t&amp;objects[]=f&amp;topics[]=l&amp;res=100&amp;covers=on'  title='LibraryGenesis' >LibraryGenesis</a></div>
-<div class='one'><a href='https://kat.am/browse/'  title='Need uTorrent Client to download' >KickAss</a></div>
+<div class='one'><a href='https://archive.org/'  title='Archive ORG' >Archive</a></div>
 <div class='one'><a href='https://www.1tamilmv.soy/'  title='https://tamilmv.unblockit.ch/ https://www.1tamilmv.one/ https://tamilmv.unblockit.app/ https://tamilmv.unblockit.bz/' >TRock</a></div>
 <div class='one'><a href='https://pirateproxy.app/browse'  title='Pirate Bay' >PirateBay</a></div>
 <div class='one'><a href='https://www.limetorrents.cc'  title='LimeTorrent' >LimeTorrent</a></div>
 <div class='one'><a href='https://yts.lt/'  title='https://yts.torrentbay.st/' >YTS</a></div>
+<div class='one'><a href='https://en.yts.si/movies/the-great-flood-2025/?sort=date_added'  title='YTS2' >YTS2</a></div>
 <div class='one'><a href='https://ytstv.me/'  title='YifyTV' >YTSTV</a></div>
 <div class='one'><a href='https://1337x.to/'  title='1337 Need Proxy' >1337</a></div>
 <div class='one'><a href='https://www.rarbgproxy.to'  title='RARBG Need Proxy' >RARBG</a></div>
 <div class='one'><a href='http://www.hindigeetmala.net/'  title='Hindi Lyrics' >HindiLyrics</a></div>
-<div class='one'><a href='https://ebook4expert.org'  title='ebook4expert' >ebook4expert</a></div>
-<div class='one'><a href='https://4movierulz.us/'  title='Indian Movies' >Mv</a></div>
 <div class='one'><a href='https://eztv.re/'  title='TV Torrent' >EZTv</a></div>
 <div class='one'><a href='https://ndl.iitkgp.ac.in/'  title='NDLI Book Collection' >NDLI</a></div>
 <div class='one'><a href='http://mio.to/'  title='MP3 Collections' >MIO</a></div>
 <div class='one'><a href='https://www.tamilhindu.com/2010/04/the-other-face-of-justice-party-01/'  title='Hindu Religion Related Article and Politics' >TamilHindu</a></div>
-<div class='one'><a href='https://www.pendujatt.net/'  title='MP3 Songs download' >PenduJatt</a></div>
-<div class='one'><a href='https://tamilpaatu.com/'  title='MP3 Songs download' >TamilPaatu</a></div>
-<div class='one'><a href='https://www.5movierulz.voyage/'  title='movierulz' >movierulz</a></div></div>
+<div class='one'><a href='https://www.5movierulz.voyage/'  title='movierulz' >movierulz</a></div>
+<div class='one'><a href='https://www.jeyamohan.in/'  title='Jayamohan Home page' >JM</a></div>
+<div class='one'><a href='https://www.tamildigitallibrary.in/'  title='Tamil Books Library' >TamilLib</a></div></div>
 <div class='flex1'><div class='cat'>Technology</div>
 <div class='one'><a href='http://www.microsoft.com/ms.htm'  title='OS, MS Office etc' >Microsoft</a></div>
 <div class='one'><a href='http://distrowatch.com/'  title='Operating system' >Linux</a></div>
@@ -214,38 +332,58 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='https://getbootstrap.com/'  title='CSS Framework Bootstrap' >Bootstarp</a></div>
 <div class='one'><a href='https://www.w3schools.com/w3css/defaulT.asp'  title='CSS Framework W3CSS' >W3CSS</a></div>
 <div class='one'><a href='http://www.vim.org/'  title='Powerful Editor Text processor' >VIM</a></div>
-<div class='one'><a href='https://addons.mozilla.org/en-US/firefox/'  title='Browser' >FireFox</a></div>
 <div class='one'><a href='http://www.slax.org'  title='Tiny Linux Distribution' >SLAX</a></div>
 <div class='one'><a href='http://doc.slitaz.org/en:start'  title='Tiny Linux Distribution' >SLITAZ</a></div>
-<div class='one'><a href='http://zetcode.com/gui/pyqt4/'  title='Pyqt4 Tutorial' >PyQT4</a></div>
+<div class='one'><a href='https://www.canva.com/'  title='Canva' >Canva</a></div>
 <div class='one'><a href='https://exceljet.net/excel-functions'  title='Excel Tips and Tricks' >ExcelJet</a></div>
 <div class='one'><a href='https://core.telegram.org/bots/api'  title='Telegram Bot' >TelBot</a></div></div>
 <div class='flex1'><div class='cat'>Tech Tools</div>
-<div class='one'><a href='http://www.connectionstrings.com/'  title='Connect String Examples Good' >Conn</a></div>
-<div class='one'><a href='http://sugarjs.com/api'  title='Javascript Library' >SugarJS</a></div>
-<div class='one'><a href='http://stackoverflow.com/'  title='Stack Over Flow Technical Tips' >StackOverFlow</a></div>
-<div class='one'><a href='https://all-free-download.com/free-vector/'  title='Free Vector Images' >FreeVector</a></div>
-<div class='one'><a href='https://www.kisspng.com/'  title='Free PNG Files' >kPNG</a></div>
-<div class='one'><a href='http://cssminifier.com/'  title='CSS / JavaScript Minifier' >Minify</a></div>
-<div class='one'><a href='http://www.convertcsv.com/generate-test-data.htm#keywords'  title='Sample Data, CSV to XML, Json etc' >GenData</a></div>
+<div class='one'><a href='https://ifimageediting.com/image-to-text'  title='Image to text extraction' >Img2Txt</a></div>
 <div class='one'><a href='http://www.onlineocr.net/'  title='Extract Text From Image' >Img2Txt</a></div>
-<div class='one'><a href='https://www.mockaroo.com/'  title='Sample Data, CSV to XML, Json etc (Use lucytower@gmail.com login)' >GenData2</a></div>
 <div class='one'><a href='https://www.remove.bg/upload'  title='Remove Background of graphics' >Remove BG</a></div>
-<div class='one'><a href='http://www.virtualvinodh.com/projects'  title='Tamil to Devnagani conversion etc' >VirVonodh</a></div>
-<div class='one'><a href='https://www.canva.com/'  title='Design Templates' >Canva</a></div>
 <div class='one'><a href='https://www.photoroom.com/tools/background-remover'  title='Remove Background' >RemoveBG</a></div>
-<div class='one'><a href='https://ssyoutube.com/en133gj/youtube-video-downloader'  title='Youtube downloader' >YouTubeDL</a></div>
+<div class='head'>PDF</div>
+<div class='one'><a href='https://online2pdf.com/en/cut-pdf-pages-into-halves'  title='Slice PDF pages into two' >SplitPDF</a></div>
+<div class='one'><a href='https://www.ilovepdf.com/unlock_pdf'  title='Unlock PDF' >UnlockPDF</a></div>
+<div class='one'><a href='https://pdfjoiner.com/'  title='JoinPDF' >PDFJoiner</a></div>
+<div class='one'><a href='https://tinywow.com/'  title='All online tiny utilities' >TinyWow</a></div>
+<div class='head'>CSS</div>
+<div class='one'><a href='http://css3.mikeplate.com/'  title='CSS3 Generator' >CSS1</a></div>
+<div class='one'><a href='http://www.colorzilla.com/gradient-editor/'  title='CSS3 Generator' >CSSGradi</a></div>
+<div class='one'><a href='https://copy-paste-css.com/'  title='Copy Paste CSS Snippets' >CopyPaste</a></div>
+<div class='head'>Colors</div>
+<div class='one'><a href='http://paletton.com'  title='Color Palatte Designer' >Paletton</a></div>
+<div class='one'><a href='http://colrd.com/'  title='Color Palatte Designer' >Colrd</a></div>
+<div class='one'><a href='https://color.adobe.com/create/color-wheel'  title='Color Palatte Designer' >AdobeClrs</a></div></div>
+<div class='flex1'><div class='cat'>Misc Tools</div>
+<div class='one'><a href='https://www.tamillexicon.com/uc/libi-unicode'  title='Font Converter' >TamilLexicon</a></div>
+<div class='one'><a href='https://www.url-encode-decode.com/'  title='URLEncode' >URLEncode</a></div>
+<div class='one'><a href='http://www.convertcsv.com/generate-test-data.htm#keywords'  title='Sample Data, CSV to XML, Json etc' >GenData</a></div>
+<div class='one'><a href='https://www.mockaroo.com/'  title='Sample Data, CSV to XML, Json etc (Use lucytower@gmail.com login)' >GenData2</a></div>
+<div class='one'><a href='http://www.virtualvinodh.com/projects'  title='Tamil to Devnagani conversion etc' >VirVonodh</a></div>
+<div class='head'>Others</div>
+<div class='one'><a href='https://srirangaminfo.com/tamil-rasi-calculator.php'  title='Rasi Calculator' >RasiCalc</a></div>
+<div class='one'><a href='https://ipinfo.io/ip'  title='Obtain public IP' >PublicIP</a></div>
+<div class='one'><a href='https://srirangaminfo.com/Tamil-daily-calendar.php'  title='Daily sheet  Calendar' >DailySheet</a></div>
+<div class='one'><a href='https://www.removepaywall.com/'  title='Paywall Remover' >RemovePayWall</a></div></div>
+<div class='flex1'><div class='cat'>Beautifiers</div>
+<div class='one'><a href='http://www.cleancss.com/css-beautify/'  title='CSS Beautifier' >CSS</a></div>
+<div class='one'><a href='https://www.freeformatter.com/css-beautifier.html'  title='CSS Beauty' >CSS 2</a></div>
+<div class='one'><a href='http://www.freeformatter.com/html-formatter.html#ad-output'  title='HTML Beautifier' >HTML</a></div>
+<div class='one'><a href='http://codebeautify.org/javaviewer'  title='Java Beautifier' >Java</a></div>
+<div class='one'><a href='https://www.tutorialspoint.com/online_java_formatter.htm'  title='Java Formatter' >Java 2</a></div>
+<div class='one'><a href='http://jsbeautifier.org/'  title='JavaScript Beautifier' >Javascript</a></div>
+<div class='one'><a href='https://www.automateexcel.com/vba-code-indenter/'  title='VBA Beauty' >VBA</a></div>
+<div class='one'><a href='https://vbindent.com/?indent'  title='VBA Beauty' >VBA2</a></div></div>
+<div class='flex1'><div class='cat'>Downloader</div>
 <div class='one'><a href='https://fastdl.app/en'  title='Instagram downloader' >FastDL</a></div>
 <div class='one'><a href='https://ssyoutube.online/en2/'  title='Youtube video downloader' >YTD</a></div>
 <div class='one'><a href='https://v2.yt1s.biz/youtube-to-mp4/'  title='Y1d' >Y1D</a></div>
 <div class='one'><a href='https://fdown.net/'  title='facebook downloader' >FBDown</a></div>
 <div class='one'><a href='https://indown.io/en1'  title='Instagram downloader' >ID</a></div>
 <div class='one'><a href='https://snapinsta.to/en1/instagram-video-downloader'  title='Snap Instagram downloader' >SnapIns</a></div>
-<div class='one'><a href='https://online2pdf.com/en/cut-pdf-pages-into-halves'  title='Slice PDF pages into two' >SplitPDF</a></div>
-<div class='one'><a href='https://www.ilovepdf.com/unlock_pdf'  title='Unlock PDF' >UnlockPDF</a></div>
-<div class='one'><a href='https://pdfjoiner.com/'  title='JoinPDF' >PDFJoiner</a></div>
-<div class='one'><a href='https://tinywow.com/'  title='All online tiny utilities' >TinyWow</a></div>
-<div class='one'><a href='https://www.ilovepdf.com/'  title='All online tiny utilities' >iLovePDF</a></div></div>
+<div class='one'><a href='https://all-free-download.com/free-vector/'  title='Free Vector Images' >FreeVector</a></div>
+<div class='one'><a href='https://www.kisspng.com/'  title='Free PNG Files' >kPNG</a></div></div>
 <div class='flex1'><div class='cat'>Tutorials</div>
 <div class='one'><a href='https://beginnersbook.com/java-tutorial-for-beginners-with-examples/'  title='BeginnersBook' >BeginnersBook</a></div>
 <div class='one'><a href='https://www.geeksforgeeks.org/java/?ref=leftbar'  title='GeeksForGeeks' >GeeksForGeeks</a></div>
@@ -262,9 +400,7 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='http://www.w3schools.com/tags/default.asp'  title='HTML Tag Reference' >HTML</a></div>
 <div class='one'><a href='https://developer.mozilla.org/en-US/docs/Web/HTML'  title='Mozilla HTML Reference' >MozHTML</a></div>
 <div class='one'><a href='http://www.w3schools.com/cssref/default.asp'  title='CSS Reference' >CSS</a></div>
-<div class='one'><a href='https://developer.mozilla.org/en-US/docs/Web/CSS/Reference'  title='Mozilla CSS Reference' >MozCSS</a></div>
 <div class='one'><a href='http://www.w3schools.com/jsref/default.asp'  title='Javascript Reference' >Javascript</a></div>
-<div class='one'><a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference'  title='Mozilla Javascript Reference' >MozJS</a></div>
 <div class='one'><a href='http://www.w3schools.com/w3css/w3css_references.asp'  title='W3CSS Reference' >W3CSS</a></div>
 <div class='one'><a href='http://www.w3schools.com/bootstrap/bootstrap_ref_css_text.asp'  title='Bootstrap Reference' >Bootstrap</a></div>
 <div class='one'><a href='http://php.net/manual/en/index.php'  title='PHP Reference' >PHP</a></div>
@@ -274,33 +410,6 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='https://www.sqlitetutorial.net/'  title='SQLite Tutorial' >SQLite</a></div>
 <div class='one'><a href='https://webcode.tools/generators/html/dialog'  title='HTML Tag Reference' >HTML2</a></div>
 <div class='one'><a href='https://pandas.pydata.org/docs/user_guide/10min.html'  title='Pandas Documentation' >Pandas</a></div></div>
-<div class='flex1'><div class='cat'>Beautifiers</div>
-<div class='one'><a href='http://www.cleancss.com/css-beautify/'  title='CSS Beautifier' >CSS</a></div>
-<div class='one'><a href='https://www.freeformatter.com/css-beautifier.html'  title='CSS Beauty' >CSS 2</a></div>
-<div class='one'><a href='http://www.freeformatter.com/html-formatter.html#ad-output'  title='HTML Beautifier' >HTML</a></div>
-<div class='one'><a href='http://codebeautify.org/javaviewer'  title='Java Beautifier' >Java</a></div>
-<div class='one'><a href='https://www.tutorialspoint.com/online_java_formatter.htm'  title='Java Formatter' >Java 2</a></div>
-<div class='one'><a href='http://jsbeautifier.org/'  title='JavaScript Beautifier' >Javascript</a></div>
-<div class='one'><a href='https://www.automateexcel.com/vba-code-indenter/'  title='VBA Beauty' >VBA</a></div>
-<div class='one'><a href='https://vbindent.com/?indent'  title='VBA Beauty' >VBA2</a></div>
-<div class='one'><a href='http://xmlbeautifier.com/'  title='XML Beautifier' >XMLs</a></div>
-<div class='head'>Connectivity</div>
-<div class='one'><a href='http://www.speedtest.net/' >SpeedTest</a></div>
-<div class='one'><a href='https://www.grc.com/x/ne.dll?bh0bkyd2' >Ports</a></div></div>
-<div class='flex1'><div class='cat'>Tools</div>
-<div class='head'>CSS</div>
-<div class='one'><a href='http://css3.mikeplate.com/'  title='CSS3 Generator' >CSS1</a></div>
-<div class='one'><a href='http://www.colorzilla.com/gradient-editor/'  title='CSS3 Generator' >CSSGradi</a></div>
-<div class='one'><a href='https://copy-paste-css.com/'  title='Copy Paste CSS Snippets' >CopyPaste</a></div>
-<div class='head'>Colors</div>
-<div class='one'><a href='http://paletton.com'  title='Color Palatte Designer' >Paletton</a></div>
-<div class='one'><a href='http://colrd.com/'  title='Color Palatte Designer' >Colrd</a></div>
-<div class='one'><a href='https://color.adobe.com/create/color-wheel'  title='Color Palatte Designer' >AdobeClrs</a></div>
-<div class='one'><a href='https://srirangaminfo.com/tamil-rasi-calculator.php'  title='Rasi Calculator' >RasiCalc</a></div>
-<div class='one'><a href='https://www.tamillexicon.com/uc/libi-unicode'  title='Font Converter' >TamilLexicon</a></div>
-<div class='one'><a href='https://ifimageediting.com/image-to-text'  title='Image to text extraction' >Img2Txt</a></div>
-<div class='one'><a href='https://www.url-encode-decode.com/'  title='URLEncode' >URLEncode</a></div>
-<div class='one'><a href='https://www.removepaywall.com/'  title='Paywall Remover' >RemovePayWall</a></div></div>
 <div class='flex1'><div class='cat'>Portables</div>
 <div class='one'><a href='http://portableappz.blogspot.com/' >PortableAppz</a></div>
 <div class='one'><a href='http://www.portablefreeware.com/' >PortableFreeware</a></div>
@@ -308,16 +417,18 @@ a:hover {background-color:var(--bg4); color:var(--fg4); xpadding:2pt 4pt;}
 <div class='one'><a href='http://www.filehippo.com/' >FileHippo</a></div>
 <div class='one'><a href='https://winworldpc.com/'  title='Old DOS Windows Programs' >AbondonWare</a></div></div>
 <div class='flex1'><div class='cat'>Others</div>
-<div class='one'><a href='http://www.driverguide.com/' >DriverGuide</a></div>
+<div class='one'><a href='https://www.tnebnet.org/awp/login' >TNEB</a></div>
 <div class='one'><a href='http://www.valkstoneps.vic.edu.au/' >Valkstone</a></div>
 <div class='one'><a href='https://www.awesomeinventions.com/'  title='Awsome Inventions' >Inventions</a></div>
 <div class='one'><a href='https://www.boredpanda.com/'  title='BoredPanda' >BoredPanda</a></div>
 <div class='one'><a href='https://www.toxel.com/'  title='Toxel Design Ideas' >Toxel</a></div>
 <div class='one'><a href='http://localhost/Inspire1.html'  title='Inspirational Pages' >Inspire</a></div>
-<div class='one'><a href='http://www.timeanddate.com/worldclock/' >WorldTime</a></div>
-<div class='one'><a href='https://www.google.co.in/?gws_rd=cr&ei=dtA6UunSNMTSrQeyvIAo#q=tiruchirapalli+weather' >Weather</a></div>
 <div class='one'><a href='https://sankalmuk.github.io/kids/Bookmarks/all2.html'  title='Festivals' >Festivals</a></div>
-<div class='one'><a href='https://github.com/sankalmuk/kids/'  title='Sankaran GitHub a/c' >PSGitHub</a></div></div>
+<div class='one'><a href='https://github.com/sankalmuk/kids/'  title='Sankaran GitHub a/c' >PSGitHub</a></div>
+<div class='head'>Connectivity</div>
+<div class='one'><a href='http://www.speedtest.net/' >SpeedTest</a></div>
+<div class='one'><a href='http://www.connectionstrings.com/'  title='Connect String Examples Good' >Conn</a></div>
+<div class='one'><a href='https://www.grc.com/x/ne.dll?bh0bkyd2' >Ports</a></div></div>
 <div class='flex1'><div class='cat'>Projects</div>
 <div class='one'><a href='http://localhost/projects/learn/0ShowIndex.php'  title='Sankar Learning Resources' >Workshop</a></div>
 <div class='one'><a href='http://localhost/projects/library/library.php'  title='Sankar Searcheable Book Collections' >Library</a></div>
